@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color:rgb(161, 62, 254);
+            text-align:center;
+        }
+        #main{
+            margin-top:130px;
+        }
+        h1{
+            font-family:Georgia, 'Times New Roman', Times, serif;
+            font-size:30px;
+            font-style:italic;
+            color:white;
+            letter-spacing: 1.5px;
+            font-variant: small-caps;
+        }
+        #box1{
+            background-color:white;
+            box-shadow:4px 4px 6px black;
+            height:80px;
+            width:430px;
+            margin-left:390px;
+            margin-top:70px;
+            border-radius:10px;
+            display:flex;
+        }
+        #datebox{
+            height:30px;
+            width:160px;
+            text-align:center;
+            background-color:rgb(228, 224, 224);
+            border:none;
+            border-radius:5px;
+            margin-top:25px;
+            margin-left:40px;
+            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-variant:small-caps;
+            font-size:19px;
+        }
+        #calculator{
+            height:30px;
+            width:140px;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-size:17px;
+            margin-left:30px;
+            margin-top:25px;
+            color:white;
+            background-color:rgb(161, 62, 254);
+            border-radius:10px;
+            border:none;
+            font-weight: 600;
+            box-shadow:2px 2px 2px rgb(107, 107, 107);
+        }
+        #year{
+            height:100px;
+            width:100px;
+            background-color:rgb(255, 255, 255);
+            margin-top:30px;
+            margin-left:440px;
+            border-radius:5px;
+            box-shadow:4px 4px 5px black;
+        }
+        #month{
+            height:100px;
+            width:100px;
+            background-color:rgb(255, 255, 255);
+            margin-top:30px;
+            margin-left:20px;
+            border-radius:5px;
+            box-shadow:4px 4px 5px black;
+        }
+        #days{
+            height:100px;
+            width:100px;
+            background-color:rgb(255, 255, 255);
+            margin-top:30px;
+            margin-left:20px;
+            border-radius:5px;
+            box-shadow:4px 4px 5px black;
+        }
+        #boxs{
+            display:flex;
+        }
+
+        #yearNo{
+            margin-top:20px;
+            font-size:28px;
+        }
+        #monthNo{
+            margin-top:20px;
+            font-size:28px;
+        }
+        #daysNo{
+            margin-top:20px;
+            font-size:28px;
+        }
+        #text{
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size:17px;
+        }
+        button:active{
+            transform:translateY(1px);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
+    <h1> Age Calculator</h1>
+    <div id="box1">
+        <input type="date" id="datebox"> 
+        <button id="calculator" onclick="calculateAge()">Calculator</button>
+    </div>
+    <div id="boxs">
+    <div id="year">
+        <div id="yearNo">00</div>
+        <br>
+        <div id="text"> YEAR </div>
+       </div>
+
+    <DIV id="month">
+        <div id="monthNo">00</div>
+        <br>
+        <div id="text"> MONTH </div>
+    </DIV>
+
+    <DIV id="days">
+        <div id="daysNo">00</div>
+        <br>
+        <div id="text"> DAYS </div>
+    </DIV>
+    </div>
+    </div>
+
+    <script>
+        function calculateAge(){
+            const dobInput=document.querySelector("#datebox").value;
+            const dob=new Date(dobInput);
+            const today=new Date();
+
+            let years=today.getFullYear()-dob.getFullYear();
+            let months=today.getMonth()-dob.getMonth();
+            let days=today.getDate()-dob.getDate();
+
+            if (days<0){
+                months--;
+                const prevMonth = new Date(today.getFullYear(),today.getMonth(),0);
+                days+=prevMonth.getDate();
+            }
+
+            if (months<0){
+                years--;
+                months+=12;
+            }
+            document.getElementById('yearNo').textContent=`${years}`;
+            document.getElementById('monthNo').textContent=`${months}`;
+            document.getElementById('daysNo').textContent=`${days}`;
+        }
+        </script>
+</body>
+</html>
